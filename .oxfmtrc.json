@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "ignorePatterns": [
+    ".agents/**",
+    ".claude/**",
+    "evals/**",
+    "test/reference/tree/**",
+    "test/reference/accepted-skill.md",
+    "test/reference/corpus.json",
+    "test/reference/manifest.json",
+    "test/parser/fixtures/**",
+    "specs/done/codecompass/assets/**",
+    "skills/**"
+  ]
+}

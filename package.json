@@ -1,0 +1,43 @@
+{
+  "name": "codecompass",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/core",
+      "packages/typescript-config"
+    ],
+    "catalog": {
+      "typescript": "5.9.3",
+      "@types/bun": "1.3.14"
+    }
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "bun scripts/parser-assets.mjs && bun apps/cli/src/index.ts",
+    "build": "turbo build",
+    "check-types": "turbo check-types",
+    "lint": "turbo lint",
+    "test": "bash scripts/test-docker.sh bash scripts/test-suite.sh",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "test:docker": "bash scripts/test-docker.sh",
+    "test:parser": "bash scripts/test-docker.sh node --experimental-strip-types --test test/parser/*.test.ts && bash scripts/test-installed.sh --test-name-pattern \"runtime has|local commands|parses Python\"",
+    "test:filesystem": "bash scripts/test-docker.sh bun test packages/core/test/filesystem.test.ts test/retrieval.test.ts && bash scripts/test-installed.sh --test-name-pattern \"filesystem policy\"",
+    "test:installed": "bash scripts/test-installed.sh",
+    "test:e2e": "bun run test:installed",
+    "verify": "bun run check-types && bun run lint && bun run test && bun run test:installed",
+    "eval:swebench": "python3 evals/implementation/swebench/installed.py",
+    "test:native": "node scripts/test-native.mjs"
+  },
+  "devDependencies": {
+    "oxfmt": "0.57.0",
+    "oxlint": "1.72.0",
+    "turbo": "2.10.3",
+    "typescript": "catalog:"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "bun@1.3.14"
+}
