@@ -1,0 +1,30 @@
+{
+  "name": "@repo/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./providers": "./src/providers.ts",
+    "./source": "./src/source.ts",
+    "./storage": "./src/storage.ts"
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "lint": "oxlint src"
+  },
+  "dependencies": {
+    "@ai-sdk/typesafe-ai": "3.0.8",
+    "ai": "7.0.107",
+    "ignore": "7.0.5",
+    "typescript": "5.9.3",
+    "web-tree-sitter": "0.27.0"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "22",
+    "tree-sitter-python": "0.25.0",
+    "tree-sitter-go": "0.25.0",
+    "tree-sitter-rust": "0.24.0"
+  }
+}
